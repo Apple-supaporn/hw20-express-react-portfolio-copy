@@ -1,4 +1,4 @@
-# Express and React Lab
+# Express and React
 
 During this lab we will be creating a full stack portfolio page using Express and React to see how you can create a full stack project using a simple API build with express and a frontend application with React.
 
