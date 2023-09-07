@@ -459,7 +459,7 @@ Once everything seems working, do the following.
 
 - after you allow access and select the repo you want to deploy and select the main branch to deploy from
 
-- enter the build settings with the data in the image [](https://imgur.com/a/LziwUwk)
+- enter the build settings with the data in the image ![image of netlify deployment settings](https://i.imgur.com/ZZwW6FQ.png)
 
 - if you have environmental variables, you can enter them now or add them later on
 
