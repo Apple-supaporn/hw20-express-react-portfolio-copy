@@ -2,27 +2,26 @@
 
 During this lab we will be creating a full stack portfolio page using Express and React to see how you can create a full stack project using a simple API build with express and a frontend application with React.
 
-- [Here is a Repo with a final version for reference](https://git.generalassemb.ly/AlexMerced/Express-React-Portfolio-Reference-Code)
+**NOTE** The frontend and backend project MUST be in separate repos, follow the direction carefully regarding where repos are created and deployment **(deployment optional)**.
 
-**NOTE** While the above repo has the backend and frontend folder in one repo, to deploy the backend and frontend project MUST be in separate repos, follow the direction carefully regarding where repos are created and deployment.
+**ANOTHER NOTE** This is **not your actual portfolio**, so don't worry about making it perfect. Use this as an exercise to practice the skills we've learned in the class so far. You are welcome to try changing this fake portfolio to be your "real" portfolio. (see challenges at the end for ideas!)
 
-**ANOTHER NOTE** This is **not your actual portfolio**, so don't worry about making it perfect. Use this as an exercise to practice the skills we've learned in the class so far.
+**THE MOST IMPORTANT NOTE OF ALL** DO NOT COPY/PASTE! Typing every line by hand is what helps you learn the syntax and develop a deeper understanding of code and how to read it!
 
 ## Setup
 
-- Create an empty folder to house this project `express_react_lab` (this folder should **NOT be a GIT repo**, so NOT in your `student_resources` folder)
+- Create an empty folder to house this project `express_react_hw`.
 
 - Inside this folder create a folder for our backend app called `backend` this will house our express application
 
-- Then we will generate a react project for a our frontend, either of these two commands should do the trick (the command should be run from the express_react_folder so make sure your terminal is in that folder)...
+- Generate a react project for a our frontend, using this command should do the trick (make sure you're in the right folder! `/express_react_hw`)...
 
   - `npx create-react-app frontend`
-  - `npm init @vitejs/app frontend --template react`
 
 - The end result should be the following folder structure
 
 ```
-- /express_react_lab
+- /express_react_hw
   > /backend
   > /frontend
 ```
@@ -35,7 +34,7 @@ During this lab we will be creating a full stack portfolio page using Express an
 
 - install the following
   - `npm install express cors`
-  - `npm install --save-dev nodemon`
+  - `npm install --save-dev nodemon` (use this in case you need to install nodemon again)
 
 #### What we installed
 
@@ -45,7 +44,7 @@ During this lab we will be creating a full stack portfolio page using Express an
 
 3. nodemon: development tool to auto restart our server whenever
 
-- update the package.json with the following scripts
+- update the package.json with the following scripts (don't forget your commas!)
 
 ```json
   "scripts": {
@@ -149,17 +148,17 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 ```
 
-- run your server `npm run dev`
+- run your server `npm run dev`and test these routes in Postman
 
-- go to `localhost:4000` and make sure you see "hello world"
+- get request to `localhost:4000` and make sure you see "hello world"
 
-- go to `localhost:4000/projects` and make sure you see your projects as JSON
+- get request to `localhost:4000/projects` and make sure you see your projects as JSON
 
-- go to `localhost:4000/about` and make sure you see your about info as json
+- get request to `localhost:4000/about` and make sure you see your about info as json
 
 ## Building the Frontend
 
-Make sure to keep your Heroku url handy, we'll need it in a moment.
+Make sure to create and keep your Heroku url handy, if you are deploying your frontend (optional).
 
 - open your terminal to the `frontend` folder
 
@@ -167,31 +166,28 @@ Make sure to keep your Heroku url handy, we'll need it in a moment.
 
 ## Setting up React Router
 
+first get rid of any files and assets you won't be using (the template logos, favicons, webvitals, etc)
+**NOTE** if you are deploying this, make sure to keep your robots.txt and manifest.json never delete those!
+
+
 open up `src/index.js` and make the following changes
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
 // import router
 import { BrowserRouter as Router } from "react-router-dom";
 
-// wrap our application inside of router to enable using router
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <Router>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </Router>,
-  document.getElementById("root")
+  </Router>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
 ```
 
 ## Getting things scoped out
@@ -203,21 +199,21 @@ reportWebVitals();
 `src/components/Header.js`
 
 ```jsx
-function Header(props) {
-  return <h1>Header</h1>;
+const Header = () => {
+    return <h1>Header</h1>
 }
 
-export default Header;
+export default Header
 ```
 
 `src/components/Footer.js`
 
 ```jsx
-function Footer(props) {
-  return <h1>Footer</h1>;
+const Footer = () => {
+    return <h1>Footer</h1>
 }
 
-export default Footer;
+export default Footer
 ```
 
 - In `src/pages` create `Home.js`, `About.js` and `Projects.js`
@@ -225,31 +221,31 @@ export default Footer;
 `src/pages/Home.js`
 
 ```jsx
-function Home(props) {
-  return <h1>Home</h1>;
+const Home = () => {
+    return <h1>Home</h1>
 }
 
-export default Home;
+export default Home
 ```
 
 `src/pages/About.js`
 
 ```jsx
-function About(props) {
-  return <h1>About</h1>;
+const About = () => {
+    return <h1>About</h1>
 }
 
-export default About;
+export default About
 ```
 
 `src/pages/Projects.js`
 
 ```jsx
-function Projects(props) {
-  return <h1>Projects</h1>;
+const Projects = () => {
+    return <h1>Projects</h1>
 }
 
-export default Projects;
+export default Projects
 ```
 
 ## App.js
@@ -277,7 +273,7 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 
 function App() {
-  // URL should have YOUR HEROKU URL for your backend, make sure you include the trailing slash
+  // URL should have YOUR HEROKU URL for your backend, make sure you include the trailing slash "/" (deployment optional)
   const URL = "http://localhost:4000/";
 
   return (
@@ -305,36 +301,36 @@ Right now we can't switch between our routes with Link components, so let's buil
 ```jsx
 import { Link } from "react-router-dom";
 
-function Header(props) {
+
+const Header = () => {
   //inline style for the nav tag
   const navStyle = {
-    display: "flex",
-    justifyContent: "space-around",
-    border: "3px solid black",
-    padding: "8px",
-    width: "90%",
-    margin: "auto",
+      display: "flex",
+      justifyContent: "space-around",
+      border: "3px solid black",
+      padding: "8px",
+      width: "90%",
+      margin: "auto",
   };
-
-  return (
-    <header>
-      <h1>My Portfolio Page</h1>
-      <nav style={navStyle}>
-        <Link to="/">
-          <div>HOME</div>
-        </Link>
-        <Link to="/about">
-          <div>ABOUT</div>
-        </Link>
-        <Link to="/projects">
-          <div>PROJECTS</div>
-        </Link>
-      </nav>
-    </header>
-  );
+  return(
+      <header>
+          <h1>My Portfolio Page</h1>
+          <nav style={navStyle}>
+          <Link to="/">
+              <div>HOME</div>
+          </Link>
+          <Link to="/about">
+              <div>ABOUT</div>
+          </Link>
+          <Link to="/projects">
+              <div>PROJECTS</div>
+          </Link>
+          </nav>
+      </header>
+  )
 }
 
-export default Header;
+export default Header
 ```
 
 You should be able to navigate between our pages but they are only one word at the moment. Let's populate our projects and about pages.
@@ -353,22 +349,24 @@ We will do the following...
 ```jsx
 import { useState, useEffect } from "react";
 
-function About(props) {
+const About = (props) => {
   // create state to hold about data
   const [about, setAbout] = useState(null);
 
-  // create function to make api call
-  const getAboutData = async () => {
-    // make api call and get response
-    const response = await fetch(props.URL + "about");
-    // turn response into javascript object
-    const data = await response.json();
-    // set the about state to the data
-    setAbout(data);
-  };
-
   // make an initial call for the data inside a useEffect, so it only happens once on component load
-  useEffect(() => getAboutData(), []);
+  useEffect(() => {
+    //make your api call inside of useEffect (read more about why here: https://react.dev/reference/react/useEffect#fetching-data-with-effects)
+    async function getAboutData() {
+        // make api call and get response
+        const response = await fetch(props.URL + "about");
+        // turn response into javascript object
+        const data = await response.json();
+        // set the about state to the data
+        setAbout(data);
+    };
+
+    getAboutData()
+}, []);
 
   // define a function that will return the JSX needed once we get the data
   const loaded = () => (
@@ -401,35 +399,39 @@ We will use the same pattern for our projects
 ```jsx
 import { useState, useEffect } from "react";
 
-function Projects(props) {
+const Projects = (props) => {
+
   // create state to hold projects
   const [projects, setProjects] = useState(null);
 
-  //create function to make api call
-  const getProjectsData = async () => {
-    //make api call and get response
-    const response = await fetch(props.URL + "projects");
-    // turn response into javascript object
-    const data = await response.json();
-    // set the projects state to the data
-    setProjects(data);
-  };
-
   // make an initial call for the data inside a useEffect, so it only happens once on component load
-  useEffect(() => getProjectsData(), []);
+  useEffect(() => {
+    //create function to make api call
+    const getProjectsData = async () => {
+      //make api call and get response
+      const response = await fetch(props.URL + "projects");
+      // turn response into javascript object
+      const data = await response.json();
+      // set the projects state to the data
+      setProjects(data);
+    };
+    
+    getProjectsData()
+}, []);
 
   // define a function that will return the JSX needed once we get the data
   const loaded = () => {
-    return projects.map((project) => (
-      <div>
+    return projects.map((project, idx) => (
+      <div key={idx}>
         <h1>{project.name}</h1>
         <img src={project.image} />
         <a href={project.git}>
           <button>Github</button>
         </a>
-        <a href={project.live}>
+        {/* you can leave the live link commented out if you aren't deploying it */}
+        {/* <a href={project.live}>
           <button>live site</button>
-        </a>
+        </a> */}
       </div>
     ));
   };
@@ -437,39 +439,26 @@ function Projects(props) {
   return projects ? loaded() : <h1>Loading...</h1>;
 }
 
-export default Projects;
+export default Projects
 ```
 
 ## Deploy Frontend
-
-Once everything seems working, do the following.
-
-- create a file called `netlify.toml` in the `frontend` folder with the following
-
-```toml
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-```
-
-- There should already be a local repo based out of the frontend folder (create react app creates one by default). If not, make one.
 
 - add all files to staging `git add .`
 
 - commit `git commit -m "frontend complete"`
 
-- create a new empty repository on github and get the url
+- push your work to github and make sure your app is ready to go
 
-- connect it to your local repository `git remote add origin URL` make sure to replace URL with your repo URL
+- go to your heroku dashboard and deploy using your github repo
 
-- push up the code `git push origin BRANCH` make sure to replace BRANCH with your active branch, you can confirm what it is with the command `git branch`
-
-- head over to netlify and create a new project **based on your frontend repo only**, it should auto detect the build command and deploy.
+- make sure to deploy BOTH your front and back ends (make sure your localhost urls are now your heroku urls)
 
 - You've deployed your portfolio!!!
 
 ## SUBMISSION INSTRUCTIONS
-- Add your working Netlify link to your frontend directory README.md file and then open a pull request on this repo with your working code in it and you're good to go!
+- open a pull request on this repo with your working code in it and you're good to go!
+**NOTE** if you deployed, include the live link in your pull request
 
 ## What Now?
 
@@ -488,4 +477,6 @@ Once everything seems working, do the following.
 #### Express Challenges
 
 - Try adding a form to your React project and a post route on your express app to go with it
+- Use the above challenge to make a route for contacting you (email, social media, whatever you want)
 - Convert from JSON files to using a mongo database for your project (not really necessary for the about info)
+  - make sure to hide your secrets in an .env (add those to your heroku deployed site too if you deployed!)
