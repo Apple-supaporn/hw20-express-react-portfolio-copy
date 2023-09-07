@@ -352,19 +352,18 @@ import { useState, useEffect } from "react";
 const About = (props) => {
   // create state to hold about data
   const [about, setAbout] = useState(null);
-
-  // make an initial call for the data inside a useEffect, so it only happens once on component load
-  useEffect(() => {
-    //make your api call inside of useEffect (read more about why here: https://react.dev/reference/react/useEffect#fetching-data-with-effects)
-    async function getAboutData() {
+  
+   const getAboutData = async () => {
         // make api call and get response
         const response = await fetch(props.URL + "about");
         // turn response into javascript object
         const data = await response.json();
         // set the about state to the data
         setAbout(data);
-    };
+    }
 
+  // make an initial call for the data inside a useEffect, so it only happens once on component load
+  useEffect(() => {
     getAboutData()
 }, []);
 
