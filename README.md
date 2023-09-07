@@ -443,15 +443,27 @@ export default Projects
 
 ## Deploy Frontend
 
+Once everything seems working, do the following.
+
+- go to your package.json and replace the "build" script with this: `"build": "CI= react-scripts build",`
+
 - add all files to staging `git add .`
 
 - commit `git commit -m "frontend complete"`
 
 - push your work to github and make sure your app is ready to go
 
-- go to your heroku dashboard and deploy using your github repo
+- go to netlify.com and create an account with your personal github account
 
-- make sure to deploy BOTH your front and back ends (make sure your localhost urls are now your heroku urls)
+- on your netlify dashboard click `add new site` > `import from a project` > `deploy with github`
+
+- after you allow access and select the repo you want to deploy and select the main branch to deploy from
+
+- enter the build settings with the data in the image [](https://imgur.com/a/LziwUwk)
+
+- if you have environmental variables, you can enter them now or add them later on
+
+- make sure to deploy BOTH your front and back ends (make sure your localhost urls are now your netlify urls)
 
 - You've deployed your portfolio!!!
 
