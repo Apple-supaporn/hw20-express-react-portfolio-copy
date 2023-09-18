@@ -1,0 +1,14 @@
+[
+    {
+        "name": "simon-game",
+        "live": "https://apple-supaporn.github.io/project-1-simon-game/",
+        "git": "https://github.com/Apple-supaporn/project-1-simon-game",
+        "image": "https://raw.githubusercontent.com/Apple-supaporn/project-1-simon-game/main/assets/images/simon-actualgame-start.png"
+    },
+    {
+        "name": "recipes-sharing",
+        "live": "https://recipes-sharing-d52068d767ac.herokuapp.com/recipes",
+        "git": "https://github.com/Apple-supaporn/project-2-recipes-sharing",
+        "image": "https://raw.githubusercontent.com/Apple-supaporn/project-2-recipes-sharing/main/assets/images/wf-recipes3.png"
+    }
+]
